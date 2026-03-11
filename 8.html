@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07. Cultura, Princípios e Legado</title>
+    <style>
+        body { margin: 0; background: white; color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; display: flex; flex-direction: column; min-height: 100vh; }
+        .header-top { background: #0d0d0d; color: #ffff00; padding: 20px 15px; text-align: center; }
+        .header-top h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+        .audio-bar { background: #222; padding: 15px; text-align: center; border-bottom: 5px solid #d35400; position: sticky; top: 0; z-index: 1000; }
+        .btn-audio { background: #fdfdfd; border: 2px solid #333; padding: 10px 25px; margin: 0 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; border-radius: 5px; text-transform: uppercase; }
+        .content { padding: 30px 25px; flex: 1; max-width: 850px; margin: 0 auto; text-align: justify; }
+        h2 { color: #7b0000; font-size: 1.8rem; border-left: 8px solid #d35400; padding-left: 15px; margin-bottom: 25px; }
+        .legado-box { background: #f8f9fa; border: 2px solid #d35400; padding: 20px; margin: 25px 0; border-radius: 10px; }
+        .case-biblico { background: #f4f4f4; padding: 20px; border-radius: 8px; margin: 25px 0; border: 1px solid #ddd; }
+        .case-biblico h3 { margin-top: 0; color: #d35400; }
+        .nav-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; padding-bottom: 40px; }
+        .nav-btn { display: block; width: 100%; padding: 20px; background: #000; color: #ffff00; text-align: center; text-decoration: none; font-weight: bold; border: none; font-size: 1.2rem; text-transform: uppercase; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="header-top"><h1>GERAÇÃO INABALÁVEL</h1></div>
+
+<div class="audio-bar">
+    <button class="btn-audio" onclick="lerTexto()">▶ OUVIR TEXTO</button>
+    <button class="btn-audio" onclick="pararLeitura()">⏹ PARAR</button>
+</div>
+
+<div class="content" id="textoParaLer">
+    <h2>07. Cultura, Princípios e Legado</h2>
+    
+    <p>A conclusão de uma vida inabalável não está no que você acumula, mas no que você transmite. Cultura não é apenas o que consumimos, é o ambiente que criamos. Como jovens cristãos, somos chamados para ser "contracultura" — não por ódio ao mundo, mas por amor aos princípios eternos que não se dobram ao tempo.</p>
+
+    <div class="legado-box">
+        <strong>O Conceito de Legado:</strong> Legado não é deixar algo PARA as pessoas, é deixar algo NAS pessoas. Enquanto o mundo foca na herança financeira, o Reino foca na herança espiritual. "A memória do justo é abençoada" (Provérbios 10:7).
+    </div>
+
+    <div class="case-biblico">
+        <h3>Timóteo: O Legado de Três Gerações</h3>
+        <p>O apóstolo Paulo escreve a Timóteo lembrando-se da "fé não fingida" que habitou primeiro em sua avó Lóide e em sua mãe Eunice (2 Timóteo 1:5). Timóteo não começou do zero; ele era o fruto de um legado de princípios. Ele foi instruído a passar esse bastão adiante: "O que de mim ouviste... transmite a homens fiéis" (2 Timóteo 2:2).</p>
+        <span style="font-weight:bold; font-size:0.8rem;">— Fonte: Bíblia Sagrada</span>
+    </div>
+
+    <p>O filósofo e teólogo <strong>Francis Schaeffer</strong> afirmava que cada geração é responsável por traduzir o Evangelho para sua própria cultura sem comprometer a verdade. Ter princípios inabaláveis significa ter "pés no chão e olhos na eternidade". Se seus princípios mudam conforme a moda cultural, eles não são princípios, são apenas preferências.</p>
+    
+    <p>Historicamente, vemos o exemplo dos <strong>Moravianos</strong> no século XVIII. Jovens que venderam a si mesmos como escravos para levar o Evangelho a lugares onde ninguém queria ir. Eles criaram uma cultura de oração que durou 100 anos ininterruptos. Esse é o poder de um legado: ele sobrevive ao autor e continua ecoando na eternidade.</p>
+
+    <p>A Geração Inabalável entende que a verdadeira resiliência radical deságua em um legado de santidade. Como disse <strong>Jim Elliot</strong>, mártir aos 28 anos: <em>"Não é tolo aquele que dá o que não pode reter, para ganhar o que não pode perder"</em>. Seu legado é construído hoje, em cada decisão de honrar a Deus quando ninguém está vendo.</p>
+
+    <div class="nav-footer">
+        <p style="text-align:center; font-weight:bold; color:#d35400;">VOCÊ CHEGOU AO FIM DA JORNADA TEÓRICA.</p>
+        <a href="8.html" class="nav-btn">ACESSAR MISSÃO INABALÁVEL 🏁</a>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const synth = window.speechSynthesis;
+    let utterance;
+    function lerTexto() {
+        synth.cancel();
+        const texto = document.getElementById("textoParaLer").innerText;
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.1;
+        synth.speak(utterance);
+    }
+    function pararLeitura() { synth.cancel(); }
+</script>
+
+</body>
+</html>

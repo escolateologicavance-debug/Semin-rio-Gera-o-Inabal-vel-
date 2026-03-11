@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01. Identidade Blindada</title>
+    <style>
+        body { margin: 0; background: white; color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; display: flex; flex-direction: column; min-height: 100vh; }
+        .header-top { background: #0d0d0d; color: #ffff00; padding: 20px 15px; text-align: center; }
+        .header-top h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .audio-bar { background: #222; padding: 15px; text-align: center; border-bottom: 5px solid #d35400; position: sticky; top: 0; z-index: 1000; }
+        .btn-audio { background: #fdfdfd; border: 2px solid #333; padding: 10px 25px; margin: 0 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; border-radius: 5px; text-transform: uppercase; }
+
+        .content { padding: 30px 25px; flex: 1; max-width: 850px; margin: 0 auto; text-align: justify; }
+        h2 { color: #7b0000; font-size: 1.8rem; border-left: 8px solid #d35400; padding-left: 15px; margin-bottom: 25px; }
+        .estatistica { background: #fffde7; border: 1px dashed #fbc02d; padding: 15px; margin: 20px 0; font-size: 0.95rem; color: #444; }
+        .case-biblico { background: #f4f4f4; padding: 20px; border-radius: 8px; margin: 25px 0; border: 1px solid #ddd; }
+        .case-biblico h3 { margin-top: 0; color: #d35400; }
+        
+        .nav-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; padding-bottom: 40px; }
+        .nav-btn { display: block; width: 100%; padding: 20px; background: #d35400; color: white; text-align: center; text-decoration: none; font-weight: bold; border: none; font-size: 1.2rem; text-transform: uppercase; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="header-top">
+    <h1>GERAÇÃO INABALÁVEL</h1>
+</div>
+
+<div class="audio-bar">
+    <button class="btn-audio" onclick="lerTexto()">▶ OUVIR TEXTO</button>
+    <button class="btn-audio" onclick="pararLeitura()">⏹ PARAR</button>
+</div>
+
+<div class="content" id="textoParaLer">
+    <h2>01. Identidade Blindada</h2>
+    
+    <p>A crise de identidade é o mal do século para a juventude. Segundo dados da Organização Mundial da Saúde, os transtornos de ansiedade e crises de autoimagem cresceram significativamente entre jovens. O fenômeno da comparação social digital cria uma geração que sabe tudo sobre a vida dos outros, mas desconhece sua própria essência diante do Criador.</p>
+
+    <div class="case-biblico">
+        <h3>O Caso de Daniel: Blindagem Cultural</h3>
+        <p>Quando Daniel foi levado para a Babilônia, tentaram mudar seu nome para Beltessazar. O objetivo era apagar sua identidade de servo do Deus Vivo. Daniel entendeu que podiam mudar sua dieta e suas vestes, mas não o seu altar. Ele decidiu firmemente não se contaminar.</p>
+    </div>
+
+    <p>A blindagem da identidade não é um isolamento do mundo, mas uma imunidade aos valores corrompidos. O teólogo Abraham Kuyper afirmava que não há um centímetro na existência humana onde Cristo não clame: É meu! Se sua identidade pertence a Cristo, ela não está à venda para ideologias passageiras.</p>
+
+    <div class="estatistica">
+        Fato Científico: Pesquisas da Universidade de Harvard indicam que jovens com crenças espirituais sólidas possuem maior resiliência emocional. A fé fundamentada atua como uma âncora psicológica em tempos de incerteza.
+    </div>
+
+    <p>Para o jovem atual, blindar a identidade significa trocar o subjetivo "Eu sinto" pela rocha eterna "Deus diz". Como dizia Charles Spurgeon: Confie em Deus de tal maneira que, se seus sentimentos fossem retirados, você ainda estaria de pé pela autoridade divina.</p>
+
+    <div class="nav-footer">
+        <a href="3.html" class="nav-btn">AVANÇAR PARA TEMA 02</a>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+    // SISTEMA DE VOZ (TEXT-TO-SPEECH)
+    const synth = window.speechSynthesis;
+    let utterance;
+
+    function lerTexto() {
+        synth.cancel(); // Para qualquer leitura anterior
+        const texto = document.getElementById("textoParaLer").innerText;
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.1; // Velocidade da leitura
+        synth.speak(utterance);
+    }
+
+    function pararLeitura() {
+        synth.cancel();
+    }
+</script>
+
+</body>
+</html>

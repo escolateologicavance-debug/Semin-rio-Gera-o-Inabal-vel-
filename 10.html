@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Inabalável - Dinâmica</title>
+    <style>
+        body { margin: 0; background: white; color: #333; font-family: 'Segoe UI', Arial, sans-serif; padding-bottom: 50px; }
+        .header-fixo { background: #000; color: #ffff00; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 100; border-bottom: 4px solid #d35400; }
+        #timer { font-size: 1.5rem; font-weight: bold; }
+        
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+        .questao { margin-bottom: 30px; padding: 15px; border: 1px solid #eee; border-radius: 8px; position: relative; }
+        .pergunta-texto { font-weight: bold; margin-bottom: 15px; display: block; }
+        
+        .opcao { display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; padding: 10px; border-radius: 5px; transition: 0.2s; border: 1px solid #f0f0f0; }
+        .opcao:hover { background: #f9f9f9; }
+        .feedback { width: 30px; height: 30px; border: 2px solid #ccc; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border-radius: 4px; background: #fff; }
+        
+        /* Cores de Acerto/Erro */
+        .correta { background: #e8f5e9 !important; border-color: #2e7d32 !important; }
+        .errada { background: #ffebee !important; border-color: #c62828 !important; }
+        .fb-sucesso { border-color: #2e7d32 !important; background: #4caf50 !important; color: white; }
+        .fb-erro { border-color: #c62828 !important; background: #f44336 !important; color: white; }
+
+        #resultado { display: none; text-align: center; padding: 40px 20px; background: #000; color: #fff; border-radius: 15px; margin-top: 20px; }
+        .trofeu { font-size: 4rem; margin-bottom: 15px; display: block; }
+        .msg-vitoria { font-size: 1.4rem; font-weight: bold; color: #ffff00; }
+        
+        .btn-finalizar { display: block; width: 100%; padding: 20px; background: #000; color: #ffff00; border: none; font-weight: bold; font-size: 1.2rem; cursor: pointer; text-transform: uppercase; margin-top: 30px; }
+        .travado { pointer-events: none; opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<div class="header-fixo">
+    TEMPO RESTANTE: <span id="timer">3:00</span>
+</div>
+
+<div class="container" id="quiz-body">
+    <div id="questoes-lista"></div>
+    <button class="btn-finalizar" onclick="encerrarMissao()">Finalizar Missão</button>
+</div>
+
+<div class="container" id="resultado">
+    <span class="trofeu" id="icon-res"></span>
+    <div class="msg-vitoria" id="msg-res"></div>
+    <p id="detalhe-res"></p>
+    <button onclick="reiniciarTudo()" style="background:none; border:1px solid #555; color:#888; cursor:pointer; margin-top:20px;">Reiniciar (Apenas para Teste)</button>
+</div>
+
+<script>
+    const perguntas = [
+        { p: "Segundo Abraham Kuyper, qual a extensão do domínio de Cristo na vida humana?", o: ["Apenas a vida espiritual", "Cada centímetro quadrado", "Onde há religião"], c: 1 },
+        { p: "Qual o nome grego para 'Obra-prima' citado em Efésios 2:10?", o: ["Metanoia", "Poiema", "Hupomone"], c: 1 },
+        { p: "Qual estratégia Nabucodonosor usou para tentar apagar a identidade de Daniel?", o: ["Mudar seu nome", "Prender sua família", "Proibir a oração"], c: 0 },
+        { p: "O que Harvard indicou sobre jovens com crenças espirituais sólidas?", o: ["São mais inteligentes", "Possuem maior resiliência cortical", "Não sofrem de estresse"], c: 1 },
+        { p: "Qual exemplo histórico de resistência foi citado no Tema 01?", o: ["Martinho Lutero", "Policarpo de Esmirna", "John Wesley"], c: 1 },
+        { p: "O que a falta de conexões sociais reais causa, segundo a Brigham Young?", o: ["Apenas tédio", "Dano igual a 15 cigarros/dia", "Perda de memória"], c: 1 },
+        { p: "Qual foi a resposta de Neemias às distrações de seus inimigos?", o: ["Estou em uma grande obra", "Não tenho tempo para vós", "Deus me defenderá"], c: 0 },
+        { p: "O que a Dra. Caroline Leaf defende sobre nossos pensamentos?", o: ["Eles são ilusórios", "Mudam a estrutura do cérebro", "Não afetam a saúde"], c: 1 },
+        { p: "O que significa 'Hupomone' no contexto de resiliência?", o: ["Fugir do sofrimento", "Permanecer sob pressão", "Aceitar a derrota"], c: 1 },
+        { p: "Qual a diferença entre Herança e Legado?", o: ["Herança é em alguém; Legado para alguém", "Herança é material; Legado é no caráter", "Não há diferença"], c: 1 }
+    ];
+
+    let tempoRestante;
+    let timerInterval;
+    const tempoTotal = 3 * 60;
+
+    function iniciarTimer() {
+        const salvo = localStorage.getItem('inabalavel_inicio');
+        const agora = Math.floor(Date.now() / 1000);
+
+        if (salvo) {
+            const decorrido = agora - parseInt(salvo);
+            tempoRestante = tempoTotal - decorrido;
+        } else {
+            localStorage.setItem('inabalavel_inicio', agora);
+            tempoRestante = tempoTotal;
+        }
+
+        timerInterval = setInterval(() => {
+            if (tempoRestante <= 0) {
+                clearInterval(timerInterval);
+                encerrarMissao();
+            } else {
+                tempoRestante--;
+                atualizarDisplay(tempoRestante);
+            }
+        }, 1000);
+    }
+
+    function atualizarDisplay(segundos) {
+        const m = Math.floor(segundos / 60);
+        const s = segundos % 60;
+        document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function renderizarQuestoes() {
+        const lista = document.getElementById('questoes-lista');
+        perguntas.forEach((q, i) => {
+            let html = `<div class="questao" id="q${i}">
+                <span class="pergunta-texto">${i+1}. ${q.p}</span>`;
+            q.o.forEach((op, j) => {
+                html += `<div class="opcao" onclick="verificar(${i}, ${j})">
+                    <div class="feedback" id="fb${i}-${j}"></div>
+                    <span>${op}</span>
+                </div>`;
+            });
+            html += `</div>`;
+            lista.innerHTML += html;
+        });
+    }
+
+    let acertos = 0;
+    let respondidas = new Set();
+
+    function verificar(qIdx, oIdx) {
+        if (respondidas.has(qIdx) || tempoRestante <= 0) return;
+        
+        respondidas.add(qIdx);
+        const fb = document.getElementById(`fb${qIdx}-${oIdx}`);
+        
+        if (oIdx === perguntas[qIdx].c) {
+            acertos++;
+            fb.innerHTML = "🤩";
+            fb.classList.add('fb-sucesso');
+        } else {
+            fb.innerHTML = "😢";
+            fb.classList.add('fb-erro');
+            // Mostra a correta discretamente
+            document.getElementById(`fb${qIdx}-${perguntas[qIdx].c}`).classList.add('fb-sucesso');
+        }
+    }
+
+    function encerrarMissao() {
+        clearInterval(timerInterval);
+        document.getElementById('quiz-body').classList.add('travado');
+        document.getElementById('quiz-body').style.display = 'none';
+        
+        const resDiv = document.getElementById('resultado');
+        const icon = document.getElementById('icon-res');
+        const msg = document.getElementById('msg-res');
+        const det = document.getElementById('detalhe-res');
+        
+        resDiv.style.display = 'block';
+        window.scrollTo(0, 0);
+
+        if (acertos === 10) {
+            icon.innerText = "🏆";
+            msg.innerText = "1º LUGAR: SENSACIONAL!";
+            det.innerText = "Jovem Vencedor! Orgulho pra essa Geração!";
+        } else if (acertos === 9) {
+            icon.innerText = "🥈";
+            msg.innerText = "2º LUGAR: EXCELENTE!";
+            det.innerText = "Você é uma referência de foco e saber!";
+        } else if (acertos >= 7) {
+            icon.innerText = "🥉";
+            msg.innerText = "3º LUGAR: PARABÉNS!";
+            det.innerText = "Você demonstrou resiliência e profundidade!";
+        } else {
+            icon.innerText = "🛡️";
+            msg.innerText = "TREINAMENTO CONCLUÍDO";
+            det.innerText = `Você acertou ${acertos} de 10. Não desista, o aprendizado exige persistência!`;
+        }
+    }
+
+    function reiniciarTudo() {
+        localStorage.removeItem('inabalavel_inicio');
+        location.reload();
+    }
+
+    window.onload = () => {
+        renderizarQuestoes();
+        iniciarTimer();
+    };
+</script>
+
+</body>
+</html>

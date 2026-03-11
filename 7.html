@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06. Resiliência Radical</title>
+    <style>
+        body { margin: 0; background: white; color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; display: flex; flex-direction: column; min-height: 100vh; }
+        .header-top { background: #0d0d0d; color: #ffff00; padding: 20px 15px; text-align: center; }
+        .header-top h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+        .audio-bar { background: #222; padding: 15px; text-align: center; border-bottom: 5px solid #d35400; position: sticky; top: 0; z-index: 1000; }
+        .btn-audio { background: #fdfdfd; border: 2px solid #333; padding: 10px 25px; margin: 0 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; border-radius: 5px; text-transform: uppercase; }
+        .content { padding: 30px 25px; flex: 1; max-width: 850px; margin: 0 auto; text-align: justify; }
+        h2 { color: #7b0000; font-size: 1.8rem; border-left: 8px solid #d35400; padding-left: 15px; margin-bottom: 25px; }
+        .box-resiliencia { background: #fdf2f2; border: 1px solid #f5c6cb; padding: 15px; margin: 20px 0; color: #721c24; border-radius: 5px; }
+        .case-biblico { background: #f4f4f4; padding: 20px; border-radius: 8px; margin: 25px 0; border: 1px solid #ddd; }
+        .case-biblico h3 { margin-top: 0; color: #d35400; }
+        .nav-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; padding-bottom: 40px; }
+        .nav-btn { display: block; width: 100%; padding: 20px; background: #d35400; color: white; text-align: center; text-decoration: none; font-weight: bold; border: none; font-size: 1.2rem; text-transform: uppercase; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="header-top"><h1>GERAÇÃO INABALÁVEL</h1></div>
+
+<div class="audio-bar">
+    <button class="btn-audio" onclick="lerTexto()">▶ OUVIR TEXTO</button>
+    <button class="btn-audio" onclick="pararLeitura()">⏹ PARAR</button>
+</div>
+
+<div class="content" id="textoParaLer">
+    <h2>06. Resiliência Radical</h2>
+    
+    <p>A cultura atual promove a fragilidade. Ao menor sinal de desconforto ou oposição, o jovem é incentivado a desistir ou se vitimizar. No entanto, a Bíblia nos chama para uma resiliência radical. Ser resiliente não é apenas "aguentar o tranco", mas é a capacidade de ser pressionado sem perder a forma que Deus te deu.</p>
+
+    <div class="box-resiliencia">
+        <strong>Conceito Chave:</strong> A palavra grega para perseverança é <em>Hupomone</em>. Significa "permanecer sob a pressão". Não é fuga, é resistência com esperança.
+    </div>
+
+    <div class="case-biblico">
+        <h3>Estêvão: Inabalável sob Pedras</h3>
+        <p>Estêvão, o primeiro mártir, enfrentou a maior pressão que um jovem pode sofrer: a ameaça de morte por apedrejamento. Em Atos 7, vemos que sua resiliência não vinha de sua própria força, mas de onde seus olhos estavam focados. "Ele, porém, cheio do Espírito Santo, fixou os olhos no céu e viu a glória de Deus" (Atos 7:55). A resiliência radical nasce de uma visão que vai além das circunstâncias.</p>
+        <span style="font-weight:bold; font-size:0.8rem;">— Fonte: Bíblia Sagrada</span>
+    </div>
+
+    <p>O autor cristão <strong>A.W. Tozer</strong> dizia: <em>"É duvidoso que Deus possa abençoar grandemente um homem sem antes tê-lo ferido profundamente"</em>. A dor e a oposição não são sinais de que Deus te abandonou, mas muitas vezes são o "ginásio" de Deus para fortalecer seu caráter. Ouro sem fogo é apenas minério.</p>
+    
+    <p>A psicologia moderna chama isso de "Crescimento Pós-Traumático". Dados da <em>Universidade da Pensilvânia</em> sugerem que o otimismo baseado em um propósito transcendente é o maior preditor de sucesso em ambientes de alta pressão. Para o cristão, esse otimismo tem nome: Esperança Viva. Como escreveu o pastor <strong>Timothy Keller</strong>: <em>"A resiliência cristã não é estóica; ela é cheia de lágrimas, mas também de uma confiança inabalável de que o sofrimento não tem a última palavra"</em>.</p>
+
+    <p>O jovem inabalável entende que o mundo tentará "cancelá-lo", mas ele já está "confirmado" no céu. A resiliência radical é a marca de quem, como Paulo, pode dizer: "Em tudo somos atribulados, mas não angustiados; perplexos, mas não desanimados; perseguidos, mas não desamparados" (2 Coríntios 4:8-9). Se a sua base é a Rocha, a tempestade só serve para lavar a poeira.</p>
+
+    <div class="nav-footer">
+        <a href="8.html" class="nav-btn">AVANÇAR PARA TEMA 07</a>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const synth = window.speechSynthesis;
+    let utterance;
+    function lerTexto() {
+        synth.cancel();
+        const texto = document.getElementById("textoParaLer").innerText;
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.1;
+        synth.speak(utterance);
+    }
+    function pararLeitura() { synth.cancel(); }
+</script>
+
+</body>
+</html>

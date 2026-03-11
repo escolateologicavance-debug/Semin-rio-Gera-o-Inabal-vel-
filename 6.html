@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05. Propósito Além do Like</title>
+    <style>
+        body { margin: 0; background: white; color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; display: flex; flex-direction: column; min-height: 100vh; }
+        .header-top { background: #0d0d0d; color: #ffff00; padding: 20px 15px; text-align: center; }
+        .header-top h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+        .audio-bar { background: #222; padding: 15px; text-align: center; border-bottom: 5px solid #d35400; position: sticky; top: 0; z-index: 1000; }
+        .btn-audio { background: #fdfdfd; border: 2px solid #333; padding: 10px 25px; margin: 0 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; border-radius: 5px; text-transform: uppercase; }
+        .content { padding: 30px 25px; flex: 1; max-width: 850px; margin: 0 auto; text-align: justify; }
+        h2 { color: #7b0000; font-size: 1.8rem; border-left: 8px solid #d35400; padding-left: 15px; margin-bottom: 25px; }
+        .citacao-destaque { background: #fff5e6; border-right: 5px solid #d35400; padding: 20px; margin: 25px 0; font-style: italic; font-weight: 500; }
+        .case-biblico { background: #f4f4f4; padding: 20px; border-radius: 8px; margin: 25px 0; border: 1px solid #ddd; }
+        .case-biblico h3 { margin-top: 0; color: #d35400; }
+        .nav-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; padding-bottom: 40px; }
+        .nav-btn { display: block; width: 100%; padding: 20px; background: #d35400; color: white; text-align: center; text-decoration: none; font-weight: bold; border: none; font-size: 1.2rem; text-transform: uppercase; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="header-top"><h1>GERAÇÃO INABALÁVEL</h1></div>
+
+<div class="audio-bar">
+    <button class="btn-audio" onclick="lerTexto()">▶ OUVIR TEXTO</button>
+    <button class="btn-audio" onclick="pararLeitura()">⏹ PARAR</button>
+</div>
+
+<div class="content" id="textoParaLer">
+    <h2>05. Propósito Além do Like</h2>
+    
+    <p>Vivemos na era da "performance constante". O jovem é treinado para acreditar que se uma ação não foi postada e curtida, ela não teve valor. Isso gera uma geração de atores, não de discípulos. O propósito bíblico, entretanto, floresce no secreto e é validado pela fidelidade, não pelo engajamento.</p>
+
+    <div class="citacao-destaque">
+        "Deus não nos chamou para sermos bem-sucedidos perante os homens, mas para sermos fiéis perante Ele." — Madre Teresa de Calcutá (adaptado pela tradição protestante sobre a soberania divina).
+    </div>
+
+    <div class="case-biblico">
+        <h3>João Batista: O Antinfluenciador</h3>
+        <p>João Batista tinha tudo para ser um "fenômeno de audiência" permanente, mas sua missão era desaparecer para que Cristo aparecesse. Ele disse: "É necessário que Ele cresça e que eu diminua" (João 3:30). João não buscava retenção de público; ele buscava a entrega do propósito. Ele morreu sem likes, mas foi chamado por Jesus de "o maior entre os nascidos de mulher".</p>
+        <span style="font-weight:bold; font-size:0.8rem;">— Fonte: Bíblia Sagrada</span>
+    </div>
+
+    <p>O renomado pastor <strong>Charles Spurgeon</strong> advertia contra a busca pelo aplauso humano: <em>"Aquele que vive do fôlego de aplausos morrerá quando eles cessarem"</em>. Se o seu propósito depende do botão de curtir, você será um escravo do humor da multidão. O propósito inabalável está ancorado na eternidade, onde a única aprovação que importa é o "Bem está, servo bom e fiel".</p>
+    
+    <p>Estatísticas do <em>Journal of Social and Clinical Psychology</em> mostram que o vício em validação social está diretamente ligado ao aumento da depressão. Isso ocorre porque o "like" é um substituto barato para o significado real. O propósito real exige suor, silêncio e, muitas vezes, incompreensão. Como afirmou <strong>Dietrich Bonhoeffer</strong>: <em>"Quando Cristo chama um homem, Ele o convida a vir e morrer"</em> — morrer para o ego e para a necessidade de ser o centro das atenções.</p>
+
+    <p>Para a Geração Inabalável, o sucesso não é o topo da pirâmide social, mas o centro da vontade de Deus. Relevância é o que você faz quando ninguém está olhando, mas Deus está sorrindo. O propósito além do like é saber que você é um embaixador de um Reino Invisível, e sua recompensa não é um "compartilhamento", mas a Coroa da Vida.</p>
+
+    <div class="nav-footer">
+        <a href="7.html" class="nav-btn">AVANÇAR PARA TEMA 06</a>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const synth = window.speechSynthesis;
+    let utterance;
+    function lerTexto() {
+        synth.cancel();
+        const texto = document.getElementById("textoParaLer").innerText;
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.1;
+        synth.speak(utterance);
+    }
+    function pararLeitura() { synth.cancel(); }
+</script>
+
+</body>
+</html>

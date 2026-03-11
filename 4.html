@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. Mente em Foco</title>
+    <style>
+        body { margin: 0; background: white; color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; display: flex; flex-direction: column; min-height: 100vh; }
+        .header-top { background: #0d0d0d; color: #ffff00; padding: 20px 15px; text-align: center; }
+        .header-top h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+        .audio-bar { background: #222; padding: 15px; text-align: center; border-bottom: 5px solid #d35400; position: sticky; top: 0; z-index: 1000; }
+        .btn-audio { background: #fdfdfd; border: 2px solid #333; padding: 10px 25px; margin: 0 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; border-radius: 5px; text-transform: uppercase; }
+        .content { padding: 30px 25px; flex: 1; max-width: 850px; margin: 0 auto; text-align: justify; }
+        h2 { color: #7b0000; font-size: 1.8rem; border-left: 8px solid #d35400; padding-left: 15px; margin-bottom: 25px; }
+        .alerta { background: #fff5f5; border: 1px solid #feb2b2; padding: 15px; margin: 20px 0; font-size: 0.95rem; color: #c53030; font-weight: bold; }
+        .case-biblico { background: #f4f4f4; padding: 20px; border-radius: 8px; margin: 25px 0; border: 1px solid #ddd; }
+        .case-biblico h3 { margin-top: 0; color: #d35400; }
+        .nav-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; padding-bottom: 40px; }
+        .nav-btn { display: block; width: 100%; padding: 20px; background: #d35400; color: white; text-align: center; text-decoration: none; font-weight: bold; border: none; font-size: 1.2rem; text-transform: uppercase; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="header-top"><h1>GERAÇÃO INABALÁVEL</h1></div>
+
+<div class="audio-bar">
+    <button class="btn-audio" onclick="lerTexto()">▶ OUVIR TEXTO</button>
+    <button class="btn-audio" onclick="pararLeitura()">⏹ PARAR</button>
+</div>
+
+<div class="content" id="textoParaLer">
+    <h2>03. Mente em Foco: A Batalha pela Atenção</h2>
+    
+    <p>Sua mente é o território mais disputado da terra. Vivemos na "Economia da Atenção", onde cada segundo do seu foco é monetizado por algoritmos. O resultado? Uma geração com o córtex pré-frontal exausto, viciada em picos de dopamina e incapaz de meditar naquilo que é eterno.</p>
+
+    <div class="alerta">
+        <strong>Estatística Alarmante:</strong> Um estudo da <em>Universidade de Windsor</em> indica que a capacidade média de foco humano caiu de 12 para 8 segundos na era digital — menos que a de um peixinho dourado. Para o jovem cristão, o foco não é apenas uma habilidade cognitiva, é uma disciplina espiritual.
+    </div>
+
+    <div class="case-biblico">
+        <h3>Neemias: O Foco que Reconstrói</h3>
+        <p>Quando Neemias estava reconstruindo os muros de Jerusalém, seus inimigos tentaram distraí-lo quatro vezes com convites para "reuniões de diálogo". A resposta de Neemias foi o segredo da mente inabalável: "Estou fazendo uma grande obra, de modo que não poderei descer" (Neemias 6:3). Ele não lutou contra a distração; ele estava ocupado demais com o propósito para dar atenção a ela.</p>
+        <span style="font-weight:bold; font-size:0.8rem;">— Fonte: Bíblia Sagrada</span>
+    </div>
+
+    <p>O puritano <strong>John Flavel</strong> dizia: <em>"O maior fardo de um cristão é manter seu coração focado em Deus no meio de um mundo barulhento"</em>. Se você não governar sua mente, o mundo a governará por você. A Bíblia chama isso de "Levar cativo todo pensamento à obediência de Cristo" (2 Coríntios 10:5). Isso exige um esforço ativo de filtragem.</p>
+    
+    <p>A neurociência cristã moderna, defendida por autores como a <strong>Dra. Caroline Leaf</strong>, demonstra que nossos pensamentos mudam fisicamente a estrutura do nosso cérebro (Neuroplasticidade). Ao focar no que é "verdadeiro, nobre e puro" (Filipenses 4:8), você está literalmente blindando seu cérebro contra a fragmentação da ansiedade.</p>
+
+    <p>Focar a mente significa entender que o "sim" para o seu chamado exige mil "nãos" para as distrações irrelevantes. Como afirmava o evangelista <strong>Dwight L. Moody</strong>: <em>"Eu nunca vi um cristão útil que estivesse sempre mudando de foco. Escolha um objetivo e vá até o fim"</em>. Na Geração Inabalável, o foco é a nossa resistência contra o caos.</p>
+
+    <div class="nav-footer">
+        <a href="5.html" class="nav-btn">AVANÇAR PARA TEMA 04</a>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const synth = window.speechSynthesis;
+    let utterance;
+    function lerTexto() {
+        synth.cancel();
+        const texto = document.getElementById("textoParaLer").innerText;
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.1;
+        synth.speak(utterance);
+    }
+    function pararLeitura() { synth.cancel(); }
+</script>
+
+</body>
+</html>

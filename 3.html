@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02. Conexões Reais</title>
+    <style>
+        body { margin: 0; background: white; color: #1a1a1a; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; display: flex; flex-direction: column; min-height: 100vh; }
+        .header-top { background: #0d0d0d; color: #ffff00; padding: 20px 15px; text-align: center; }
+        .header-top h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+        .audio-bar { background: #222; padding: 15px; text-align: center; border-bottom: 5px solid #d35400; position: sticky; top: 0; z-index: 1000; }
+        .btn-audio { background: #fdfdfd; border: 2px solid #333; padding: 10px 25px; margin: 0 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; border-radius: 5px; text-transform: uppercase; }
+        .content { padding: 30px 25px; flex: 1; max-width: 850px; margin: 0 auto; text-align: justify; }
+        h2 { color: #7b0000; font-size: 1.8rem; border-left: 8px solid #d35400; padding-left: 15px; margin-bottom: 25px; }
+        .estatistica { background: #e3f2fd; border: 1px solid #2196f3; padding: 15px; margin: 20px 0; font-size: 0.95rem; color: #0d47a1; }
+        .case-biblico { background: #f4f4f4; padding: 20px; border-radius: 8px; margin: 25px 0; border: 1px solid #ddd; }
+        .case-biblico h3 { margin-top: 0; color: #d35400; }
+        .nav-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; padding-bottom: 40px; }
+        .nav-btn { display: block; width: 100%; padding: 20px; background: #d35400; color: white; text-align: center; text-decoration: none; font-weight: bold; border: none; font-size: 1.2rem; text-transform: uppercase; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="header-top"><h1>GERAÇÃO INABALÁVEL</h1></div>
+
+<div class="audio-bar">
+    <button class="btn-audio" onclick="lerTexto()">▶ OUVIR TEXTO</button>
+    <button class="btn-audio" onclick="pararLeitura()">⏹ PARAR</button>
+</div>
+
+<div class="content" id="textoParaLer">
+    <h2>02. Conexões Reais: Amizade e Influência</h2>
+    
+    <p>Vivemos no paradoxo da hiperconectividade: temos milhares de "amigos" virtuais, mas enfrentamos os maiores índices de solidão da história. A Bíblia ensina que a qualidade das nossas conexões determina o rumo do nosso destino. Como diz o ditado baseado em 1 Coríntios 15:33: "As más companhias corrompem os bons costumes".</p>
+
+    <div class="estatistica">
+        <strong>Fato Social:</strong> Um estudo da <em>Universidade de Brigham Young</em> revelou que a falta de conexões sociais reais é tão prejudicial à saúde quanto fumar 15 cigarros por dia. O algoritmo aproxima interesses, mas o Espírito aproxima propósitos.
+    </div>
+
+    <div class="case-biblico">
+        <h3>Davi e Jônatas: A Aliança de Propósito</h3>
+        <p>A amizade entre Davi e Jônatas é o padrão ouro de conexão real. Jônatas, sendo o herdeiro do trono, abriu mão de seus direitos para proteger o propósito de Deus na vida de Davi (1 Samuel 20). Conexões reais não competem, elas cooperam para que a vontade do Pai se estabeleça.</p>
+        <span style="font-weight:bold; font-size:0.8rem;">— Fonte: Bíblia Sagrada</span>
+    </div>
+
+    <p>O pensador cristão <strong>C.S. Lewis</strong>, em sua obra "Os Quatro Amores", afirma que a Amizade nasce no momento em que um homem diz ao outro: "O quê! Você também? Pensei que eu fosse o único!". A amizade cristã vai além do hobby; ela é uma parceria no campo de batalha espiritual.</p>
+    
+    <p>Por outro lado, o perigo da má influência é sutil. O pastor e autor <strong>John MacArthur</strong> adverte que a tolerância excessiva com amizades que ridicularizam os princípios bíblicos é o primeiro passo para o naufrágio da fé. Não se trata de ser antisocial, mas de ser seletivo. Jesus comia com pecadores, mas Suas conexões íntimas eram com aqueles que buscavam o Reino.</p>
+
+    <p>Para a juventude inabalável, a influência deve ser ativa e não passiva. Se você é a média das cinco pessoas com quem mais convive (teoria de Jim Rohn), você está subindo ou descendo? A conexão real é aquela que, segundo Provérbios 27:17, faz com que um amigo afie o outro, como o ferro afia o ferro.</p>
+
+    <div class="nav-footer">
+        <a href="4.html" class="nav-btn">AVANÇAR PARA TEMA 03</a>
+    </div>
+</div>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    const synth = window.speechSynthesis;
+    let utterance;
+    function lerTexto() {
+        synth.cancel();
+        const texto = document.getElementById("textoParaLer").innerText;
+        utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.1;
+        synth.speak(utterance);
+    }
+    function pararLeitura() { synth.cancel(); }
+</script>
+
+</body>
+</html>
